@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  resources :news
-  resources :users
+  resources :news, only: [:index, :show, :create, :update]
+  resources :users, only: [:index, :show, :create, :update]
 end

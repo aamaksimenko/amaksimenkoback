@@ -6,7 +6,7 @@ class CreateNews < ActiveRecord::Migration[7.0]
       t.text :article
       t.string :tag
       t.string :author
-
+      t.integer :author_id
       t.timestamps
     end
   end
