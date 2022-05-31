@@ -2,16 +2,16 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[ update ] 
 
   def index
-        @users = User.all.order(created_at: :asc)
-        render json: @users
+        users = User.all.order(created_at: :asc)
+        render json: users
     end
 
     def create
-        @users = User.create(user_params)    
-        if @users.save
-          render json: @users, status: :created, location: @users
+        users = User.create(user_params)    
+        if users.save
+          render json: users, status: :created, location: users
         else
-          render json: @users.errors, status: :unprocessable_entity
+          render json: users.errors, status: :unprocessable_entity
         end
       end    
 

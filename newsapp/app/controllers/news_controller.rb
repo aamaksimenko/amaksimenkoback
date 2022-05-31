@@ -2,16 +2,16 @@ class NewsController < ApplicationController
   before_action :set_news, only: %i[ update ]    
   
   def index
-        @news = News.all.order(created_at: :asc)
-        render json: @news
+        news = News.all.order(created_at: :asc)
+        render json: news
     end
 
     def create
-        @news = News.create(news_params)    
-        if @news.save
-          render json: @news, status: :created, location: @news
+        news = News.create(news_params)    
+        if news.save
+          render json: news, status: :created, location: news
         else
-          render json: @news.errors, status: :unprocessable_entity
+          render json: news.errors, status: :unprocessable_entity
         end
       end    
 
