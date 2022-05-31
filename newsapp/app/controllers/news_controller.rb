@@ -1,5 +1,7 @@
 class NewsController < ApplicationController
-    def index
+  before_action :set_news, only: %i[ update ]    
+  
+  def index
         @news = News.all.order(created_at: :asc)
         render json: @news
     end
@@ -22,5 +24,14 @@ class NewsController < ApplicationController
         end
     end
 
-      
+    private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_news
+      @news = News.find(params[:author_id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def news_params
+      params.require(:news).permit(:title, :image, :article, :tag, :author, :user_id)
+    end
 end

@@ -1,3 +1,3 @@
-class News < ApplicationRecord
+class News < ApplicationRecord    
     belongs_to :user
 end
