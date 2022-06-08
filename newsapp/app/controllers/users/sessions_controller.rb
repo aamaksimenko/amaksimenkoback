@@ -11,9 +11,11 @@ class Users::SessionsController < Devise::SessionsController
     end
   
     def respond_to_on_destroy
-      log_out_success && return if current_user
-  
-      log_out_failure
+      if log_out_success && current_user 
+        return current_user
+      else
+        return log_out_failure
+      end
     end
   
     def log_out_success
