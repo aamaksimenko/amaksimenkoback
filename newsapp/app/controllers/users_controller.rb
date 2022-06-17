@@ -6,6 +6,20 @@ class UsersController < ApplicationController
         render json: users
   end
 
+  def show_current_user
+        user = current_user
+        news = current_user.news
+        render json: {
+          user: user,
+          news: news
+        }
+  end
+
+  def show_current_user_news
+        news = current_user.news
+        render json: news
+  end
+
   def update    
       if @users.update(user_params)      
         @users.save
