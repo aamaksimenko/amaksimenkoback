@@ -15,11 +15,6 @@ class UsersController < ApplicationController
         }
   end
 
-  def show_current_user_news
-        news = current_user.news
-        render json: news
-  end
-
   def update    
       if @users.update(user_params)      
         @users.save
