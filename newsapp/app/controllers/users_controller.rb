@@ -16,11 +16,11 @@ class UsersController < ApplicationController
   end
 
   def update    
-      if @users.update(user_params)      
-        @users.save
-        render json: @users
+      if @user.update(user_params)      
+        @user.save
+        render json: @user
       else
-        render json: @users.errors, status: :unprocessable_entity
+        render json: @user.errors, status: :unprocessable_entity
       end
   end
 
@@ -32,6 +32,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :login, :email, :password, :avatar)
+      params.require(:user).permit(:name, :email)
     end
 end

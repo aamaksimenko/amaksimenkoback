@@ -1,5 +1,4 @@
-class NewsController < ApplicationController
-  before_action :set_news, only: %i[ update ]    
+class NewsController < ApplicationController    
   
   def index
         news = News.all.order(created_at: :asc)
@@ -7,7 +6,7 @@ class NewsController < ApplicationController
     end
 
     def create
-        news = News.create(news_params)    
+        news = News.new(news_params.merge(:user_id => current_user.id, :author => current_user.name))    
         if news.save
           render json: news, status: :created, location: news
         else
@@ -25,13 +24,10 @@ class NewsController < ApplicationController
     end
 
     private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_news
-      @news = News.find(params[:author_id])
-    end
 
     # Only allow a list of trusted parameters through.
     def news_params
-      params.require(:news).permit(:title, :image, :article, :tag, :author, :user_id)
+      params.require(:news).permit(:title, :image, :article, :tag)
     end
+
 end

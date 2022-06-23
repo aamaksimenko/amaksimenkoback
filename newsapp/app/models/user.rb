@@ -4,5 +4,6 @@ class User < ApplicationRecord
          :registerable,         
          jwt_revocation_strategy: JwtDenylist
   has_many :news
-  validates :email, confirmation: true 
+  validates :email, confirmation: true
+  validates :email, :name, presence:true
 end
