@@ -27,7 +27,11 @@ class NewsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def news_params
-      params.require(:news).permit(:title, :image, :article, :tag)
+      params.permit(:title, :article, :tag, :image)
+    end
+
+    def serialize(news)
+      news.attributes.merge(author: news.user.name)
     end
 
 end
